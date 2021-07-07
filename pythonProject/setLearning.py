@@ -23,7 +23,7 @@ def getImagesAndLabels(path):
 
         #user id
         id = int(os.path.split(imagePath)[-1].split(".")[1])#마지막 index : -1
-
+        print(id)
         #얼굴 샘플
         faces = detector.detectMultiScale(img_numpy)
         for(x,y,w,h) in faces:
@@ -32,10 +32,21 @@ def getImagesAndLabels(path):
 
     return faceSamples, ids
 
+def removeAllFile(filepath):
+    if os.path.exists(filepath):
+        for file in os.scandir(filepath):
+            os.remove(file.path)
+        return 'Remove .jpg Files'
+    else:
+        return 'Could not found Directory'
+
 print('\n [INFO] Training faces. It will take a few seconds. Wait ...')
 faces, ids = getImagesAndLabels(path)
 
 recognizer.train(faces,np.array(ids)) #학습
 
 recognizer.write('trainer/trainer.yml')
+
+print(removeAllFile('dataset'))     #학습완료된 .jpg사진삭제
+
 print('\n [INFO] {0} faces trained. Exiting Program'.format(len(np.unique(ids))))

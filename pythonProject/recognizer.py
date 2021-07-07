@@ -8,9 +8,9 @@ faceCascade = cv2.CascadeClassifier(cascadePath)
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
-id = 0
+id = 0 #just init
 
-names = ['seunghwan']
+names = ['seunghwan', 'mouse', 'cat']   #처음 등록했던 face_id순서대로 배열입력
 
 cam = cv2.VideoCapture(0)
 cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1980)
@@ -32,7 +32,7 @@ while True:
 
     for (x, y, w, h) in faces:
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        id, confidence = recognizer.predict(gray[y:y + h, x:x + w])
+        id, confidence = recognizer.predict(gray[y:y + h, x:x + w]) #id assigned
 
         if confidence < 55:
             id = names[id]
