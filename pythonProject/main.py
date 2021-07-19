@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import os
+import data
 
 faceCascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 
@@ -9,6 +10,8 @@ capture.set(cv2.CAP_PROP_FRAME_WIDTH,1280)
 capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 face_id = input('\n enter user id end press <return> ==> ')
+name_id = input('\n enter user name and press <return> ==> ')
+data.addInfo(name_id, face_id) #data insert
 print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 
 count = 0

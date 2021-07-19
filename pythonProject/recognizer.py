@@ -1,8 +1,9 @@
 import cv2
 import numpy as np
+import main
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-recognizer.read('trainer/trainer.yml')
+recognizer.read('trainer/trainer.yml')  #yml에 id내장
 cascadePath = 'haarcascades/haarcascade_frontalface_default.xml'
 faceCascade = cv2.CascadeClassifier(cascadePath)
 
@@ -11,6 +12,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 id = 0 #just init
 
 names = ['seunghwan', 'mouse', 'cat']   #처음 등록했던 face_id순서대로 배열입력
+names.append(str(main.name_id))  #이후 id:3 부터 등록되는것은 자동으로 프로그램시작시 이름과 같이 입력
 
 cam = cv2.VideoCapture(0)
 cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1980)
