@@ -7,7 +7,7 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import ImageFont, ImageDraw, Image
  
  
-model = load_model('model.h5')
+model = load_model('pythonProject/trainer/VGG19-Face Mask Detection.h5')
 model.summary()
  
 # open webcam
@@ -42,21 +42,22 @@ while webcam.isOpened():
             
             face_region = frame[startY:endY, startX:endX]
             
-            face_region1 = cv2.resize(face_region, (224, 224), interpolation = cv2.INTER_AREA)
+            face_region1 = cv2.resize(face_region, (128, 128), interpolation = cv2.INTER_AREA) #shape size(128,128) 바꿀려면 모델 제작시 바꿔야함
             
             x = img_to_array(face_region1)
             x = np.expand_dims(x, axis=0)
             x = preprocess_input(x)
             
             prediction = model.predict(x)
- 
-            if prediction < 0.5: # 마스크 착용으로 판별되면, 
+
+            print(prediction)
+            if prediction[0][0].round() == 0: # 마스크 미착용으로 판별되면,
                 cv2.rectangle(frame, (startX,startY), (endX,endY), (0,0,255), 2)
                 Y = startY - 10 if startY - 10 > 10 else startY + 10
                 text = "No Mask ({:.2f}%)".format((1 - prediction[0][0])*100)
                 cv2.putText(frame, text, (startX,Y), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,255), 2)
                 
-            else: # 마스크 착용으로 판별되면
+            elif prediction[0][0].round() == 1: # 마스크 착용으로 판별되면
                 cv2.rectangle(frame, (startX,startY), (endX,endY), (0,255,0), 2)
                 Y = startY - 10 if startY - 10 > 10 else startY + 10
                 text = "Mask ({:.2f}%)".format(prediction[0][0]*100)
