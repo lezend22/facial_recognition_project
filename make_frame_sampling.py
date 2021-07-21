@@ -26,8 +26,8 @@ while webcam.isOpened():
     
     if sample_num == 4:
         captured_num = captured_num + 1
-       # cv2.imwrite('./images/img'+str(captured_num)+'.jpg', frame) #마스크 안 쓴 얼굴이미지 저장
-        cv2.imwrite('./mask_images/img'+str(captured_num)+'.jpg', frame) #마스크 안 쓴 얼굴이미지 저장
+        cv2.imwrite('./images/img'+str(captured_num)+'.jpg', frame) #마스크 안 쓴 얼굴이미지 저장
+       # cv2.imwrite('./mask_images/img'+str(captured_num)+'.jpg', frame) #마스크 안 쓴 얼굴이미지 저장
         sample_num = 0
         
     
