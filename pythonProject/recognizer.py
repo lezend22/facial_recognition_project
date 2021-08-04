@@ -10,7 +10,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 
 id = 0 #just init
 
-names = ['seunghwan', 'mouse', 'cat']   #처음 등록했던 face_id순서대로 배열입력
+names = ['seunghwan', 'luming', 'cat']   #처음 등록했던 face_id순서대로 배열입력
 
 cam = cv2.VideoCapture(0)
 cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1980)
