@@ -9,7 +9,20 @@ capture.set(cv2.CAP_PROP_FRAME_WIDTH,1280)
 capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 face_id = input('\n enter user id end press <return> ==> ')
+face_name = input('\n enter user name and press Enter ==> ')
 print("\n [INFO] Initializing face capture. Look the camera and wait ...")
+
+
+def createFolder(directory):
+    try:
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+    except OSError:
+        print('Error: Creating directory. ' + directory)
+
+
+createFolder('dataset/'+ str(face_name))
+
 
 count = 0
 # 영상 처리 및 출력
@@ -29,7 +42,7 @@ while True:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
         # inputOutputArray, point1 , 2, colorBGR, thickness)
         count += 1
-        cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y + h, x:x + w])
+        cv2.imwrite("dataset/" + str(face_name) +'/' + str(face_name) +'.' + str(face_id) + '.' + str(count) + ".jpg", gray[y:y + h, x:x + w])
 
     cv2.imshow('image', frame)
 
