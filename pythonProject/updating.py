@@ -41,5 +41,5 @@ if __name__ == '__main__':
     path = 'dataset/'+ face_name
     faces, ids = getImagesAndLabel_update(path)
     recognizer.update(faces, np.array(ids))
-    recognizer.write('trainer/trainer_update.yml')
+    recognizer.write('trainer/trainer.yml')
 
