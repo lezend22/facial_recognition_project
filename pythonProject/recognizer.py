@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-recognizer.read('trainer/trainer.yml')
+recognizer.read('trainer/trainer_update.yml')
 cascadePath = 'haarcascades/haarcascade_frontalface_default.xml'
 faceCascade = cv2.CascadeClassifier(cascadePath)
 

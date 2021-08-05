@@ -7,13 +7,13 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import ImageFont, ImageDraw, Image
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-recognizer.read('pythonProject/trainer/trainer.yml')
+recognizer.read('pythonProject/trainer/trainer.yml') #choose model
 cascadePath = 'pythonProject/haarcascades/haarcascade_frontalface_default.xml'
 faceCascade = cv2.CascadeClassifier(cascadePath)
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 id = 0 #just init
-names = ['seunghwan', 'mouse', 'cat']   #처음 등록했던 face_id순서대로 배열입력
+names = ['seunghwan', 'luming', 'cat']   #처음 등록했던 face_id순서대로 배열입력
 
 
 
@@ -80,10 +80,9 @@ while webcam.isOpened():
                 cv2.putText(frame, text, (startX, Y), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
                 for (x, y, w, h) in faces:  #마스크 미착용시 얼굴인식 실시
-                    cv2.rectangle(frame, (startX, startY), (endX, endY), (0, 0, 255), 2)
                     id, confidence = recognizer.predict(gray[y:y + h, x:x + w])  # id assigned
 
-                    if confidence < 55:
+                    if confidence < 30:
                         id = names[id]
                     else:
                         id = "unknown"
