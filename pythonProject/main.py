@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import os
+from pythonProject.backend.handler import find_id_number
 
 faceCascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 
@@ -8,10 +9,12 @@ capture = cv2.VideoCapture(0)
 capture.set(cv2.CAP_PROP_FRAME_WIDTH,1280)
 capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
-face_id = input('\n enter user id end press <return> ==> ')
+
+face_id = find_id_number()
 face_name = input('\n enter user name and press Enter ==> ')
 print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 
+# 여기 face_id, face_name지정한거 setLearning하고 updating에서 db insert해야됨 그래야 db에 저장돼서 data쓸수있음
 
 def createFolder(directory):
     try:
